@@ -50,7 +50,29 @@ Order by email
 
 
 /*Let's invite the artists who have written the most rock music in our dataset. Write a
-query that returns the Artist name and total track count of the top 10 rock bands*/select Top(10) artist.artist_id,artist.name,Count(artist.artist_id) as Total_Songsfrom trackJoin album on track.album_id=album.album_idJoin artist on album.artist_id=artist.artist_idJoin genre on track.genre_id=genre.genre_idwhere genre.name Like 'Rock'Group by artist.artist_id, artist.nameorder by Total_Songs desc/*Return all the track names that have a song length longer than the average song length.
+query that returns the Artist name and total track count of the top 10 rock bands*/
+
+select Top(10) artist.artist_id,artist.name,Count(artist.artist_id) as Total_Songs
+from track
+Join album on track.album_id=album.album_id
+Join artist on album.artist_id=artist.artist_id
+Join genre on track.genre_id=genre.genre_id
+where genre.name Like 'Rock'
+Group by artist.artist_id, artist.name
+order by Total_Songs desc
+
+/*Return all the track names that have a song length longer than the average song length.
 Return the Name and Milliseconds for each track. Order by the song length with the
-longest songs listed first*/select name, millisecondsfrom trackwhere milliseconds>(      Select Avg(milliseconds) as average_length	  from track)order by milliseconds desc
+longest songs listed first*/
+
+select name, milliseconds
+from track
+where milliseconds>(
+      Select Avg(milliseconds) as average_length
+	  from track
+)
+order by milliseconds desc
+
+
+
 
