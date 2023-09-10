@@ -139,6 +139,7 @@ def main():
 
         balance +=game(balance)
 
+    
     print(f"You left with amount ${balance}")
         
         
